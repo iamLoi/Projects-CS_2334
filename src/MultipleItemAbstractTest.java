@@ -16,7 +16,7 @@ public class MultipleItemAbstractTest
     /**
      * Directory folder
      */
-    public static String directory = "origdata";
+    public static String directory = "data";
     /**
      * infantID
      */

@@ -17,7 +17,7 @@ public class TrialTest
     /**
      * Directory folder
      */
-    public static String directory = "origdata";
+    public static String directory = "data";
     /**
      * infantID
      */

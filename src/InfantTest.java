@@ -22,7 +22,7 @@ public class InfantTest
     /**
      * fileName for matching
      */
-    public static String directory = "origdata";
+    public static String directory = "data";
 
     /**
      * Object for testing

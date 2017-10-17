@@ -15,8 +15,8 @@ public class Driver
 {
     public static void main(String[] args) throws IOException
     {
-        Infant infant = new Infant("data", "k1");
-        Trial trial = new Trial("data", "k1", 1);
+        Infant infant = new Infant("data", "c1");
+        Trial trial = new Trial("data", "c1", 1);
 
         System.out.println(trial.getAverageLeftWrist(0));
         System.out.println(trial.getMinLeftWrist(0));
