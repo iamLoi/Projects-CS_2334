@@ -32,24 +32,18 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
      */
     public GeneralValue getMaxLeftWrist(int dim)
     {
-        GeneralValue max = new GeneralValue("0");
-
-        // for (int i = 0; i < getSize(); ++i)
-        // {
-        // if (getItem(i).getMaxLeftWrist(dim).isValid())
-        // {
-        // max = getItem(i).getMaxLeftWrist(dim);
-        // }
-        // }
+        GeneralValue max = new GeneralValue(Double.NEGATIVE_INFINITY);
 
         for (int i = 0; i < getSize(); ++i)
         {
-            if (getItem(i).getMaxLeftWrist(dim).isGreaterThan(max))
+            if (getItem(i).getMaxLeftWrist(dim).isValid())
             {
+                if (getItem(i).getMaxLeftWrist(dim).isGreaterThan(max))
+                {
 
-                max = getItem(i).getMaxLeftWrist(dim);
+                    max = getItem(i).getMaxLeftWrist(dim);
+                }
             }
-
         }
         return max;
 

@@ -18,8 +18,8 @@ public class Driver
         Infant infant = new Infant("data", "c1");
         Trial trial = new Trial("data", "c1", 1);
 
-        System.out.println(trial.getAverageLeftWrist(0));
-        System.out.println(trial.getMinLeftWrist(0));
+        System.out.println(trial.getAverageLeftWrist(1));
+        System.out.println(trial.getMinLeftWrist(1));
         System.out.println(trial.getMaxLeftWrist(0));
     }
 }

@@ -58,7 +58,6 @@ public class GeneralValue
         if (Double.isNaN(doubleValue))
         {
             valid = false;
-            throw new InvalidValueException("Invalid value");
         }
         else
         {
@@ -126,20 +125,11 @@ public class GeneralValue
      */
     public boolean isGreaterThan(GeneralValue value)
     {
-        if (!this.isValid())
+        if (!this.isValid() || !value.isValid())
         {
             return false;
         }
-        else
-        {
-            if (!value.isValid())
-            {
-
-                return false;
-            }
-            return (this.getDoubleValue() > value.getDoubleValue());
-        }
-
+        return (this.getDoubleValue() > value.getDoubleValue());
     }
 
     /**
