@@ -87,7 +87,15 @@ public class GeneralValue
      */
     public double getDoubleValue()
     {
-        return this.doubleValue;
+        if (!this.isValid())
+        {
+            throw new InvalidValueException("Invalid value!");
+        }
+        else
+        {
+            return this.doubleValue;
+        }
+
     }
 
     /**
@@ -127,6 +135,10 @@ public class GeneralValue
     {
         if (!this.isValid() || !value.isValid())
         {
+            if (this.isValid())
+            {
+                return true;
+            }
             return false;
         }
         return (this.getDoubleValue() > value.getDoubleValue());

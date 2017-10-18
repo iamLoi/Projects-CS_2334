@@ -38,11 +38,12 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
         // If so replace max.
         for (int i = 0; i < getSize(); ++i)
         {
+            // Check if value is valid first.
             if (getItem(i).getMaxLeftWrist(dim).isValid())
             {
                 if (getItem(i).getMaxLeftWrist(dim).isGreaterThan(max))
                 {
-
+                    // Loops through each value. If larger, replace max.
                     max = getItem(i).getMaxLeftWrist(dim);
                 }
             }
@@ -62,11 +63,13 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
     {
 
         // Initilizing min as a BIG number so other numbers can be compared to
-        // it. If smaller, replace min.
+        // it.
         GeneralValue min = new GeneralValue(Double.POSITIVE_INFINITY);
 
+        // Loops through each value. If smaller, replace min.
         for (int i = 0; i < getSize(); ++i)
         {
+            // Check if value is valid first.
             if (getItem(i).getMaxLeftWrist(dim).isValid())
             {
                 if (getItem(i).getMinLeftWrist(dim).isLessThan(min))
