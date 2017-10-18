@@ -32,7 +32,7 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
      */
     public GeneralValue getMaxLeftWrist(int dim)
     {
-        GeneralValue max = new GeneralValue(Double.NEGATIVE_INFINITY);
+        GeneralValue max = new GeneralValue();
 
         // Loops through each value and check if larger than max declared above.
         // If so replace max.
@@ -61,10 +61,7 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
      */
     public GeneralValue getMinLeftWrist(int dim)
     {
-
-        // Initilizing min as a BIG number so other numbers can be compared to
-        // it.
-        GeneralValue min = new GeneralValue(Double.POSITIVE_INFINITY);
+        GeneralValue min = new GeneralValue();
 
         // Loops through each value. If smaller, replace min.
         for (int i = 0; i < getSize(); ++i)
@@ -100,14 +97,22 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
         {
             if (getItem(i).getMaxLeftWrist(dim).isValid())
             {
-                size++;
                 sum += getItem(i).getAverageLeftWrist(dim).getDoubleValue();
+                size++;
             }
-
         }
-        average = sum / size;
-        sumToString = String.valueOf(average);
-        return new GeneralValue(sumToString);
+
+        if (size > 0)
+        {
+            average = sum / size;
+            sumToString = String.valueOf(average);
+            return new GeneralValue(sumToString);
+        }
+        else
+        {
+            // No items to compute average
+            return new GeneralValue();
+        }
 
     }
 

@@ -47,11 +47,10 @@ public class Infant extends MultipleItemAbstract
             try
             {
                 Trial trial = new Trial(directory, infantID, week);
-                trialList.add(trial);
+                this.trialList.add(trial);
             }
             catch (FileNotFoundException e)
             {
-                System.out.println("File not found.");
             }
 
         }

@@ -91,10 +91,7 @@ public class GeneralValue
         {
             throw new InvalidValueException("Invalid value!");
         }
-        else
-        {
-            return this.doubleValue;
-        }
+        return this.doubleValue;
 
     }
 
@@ -117,7 +114,6 @@ public class GeneralValue
             {
                 return true;
             }
-
             return (value.getDoubleValue() > this.getDoubleValue());
 
         }
@@ -155,16 +151,13 @@ public class GeneralValue
      */
     public String toString()
     {
-        String doubleValueString;
         if (isValid())
         {
-            doubleValueString = String.format("%.3f", doubleValue);
-            return doubleValueString;
+            return String.format("%.3f", doubleValue);
         }
         else
         {
-            doubleValueString = "invalid";
-            return doubleValueString;
+            return "invalid";
         }
     }
 
