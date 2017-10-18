@@ -34,6 +34,8 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
     {
         GeneralValue max = new GeneralValue(Double.NEGATIVE_INFINITY);
 
+        // Loops through each value and check if larger than max declared above.
+        // If so replace max.
         for (int i = 0; i < getSize(); ++i)
         {
             if (getItem(i).getMaxLeftWrist(dim).isValid())
@@ -59,21 +61,18 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
     public GeneralValue getMinLeftWrist(int dim)
     {
 
-        GeneralValue min = new GeneralValue("NaN");
-        for (int i = 0; i < getSize(); ++i)
-        {
-            if (getItem(i).getMinLeftWrist(dim).isValid())
-            {
-                min = getItem(i).getMinLeftWrist(dim);
-            }
-        }
+        // Initilizing min as a BIG number so other numbers can be compared to
+        // it. If smaller, replace min.
+        GeneralValue min = new GeneralValue(Double.POSITIVE_INFINITY);
 
         for (int i = 0; i < getSize(); ++i)
         {
-            if (getItem(i).getMaxLeftWrist(dim).isValid()
-                    && getItem(i).getMinLeftWrist(dim).isLessThan(min))
+            if (getItem(i).getMaxLeftWrist(dim).isValid())
             {
-                min = getItem(i).getMinLeftWrist(dim);
+                if (getItem(i).getMinLeftWrist(dim).isLessThan(min))
+                {
+                    min = getItem(i).getMinLeftWrist(dim);
+                }
             }
         }
         return min;
