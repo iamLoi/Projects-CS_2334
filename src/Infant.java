@@ -80,12 +80,12 @@ public class Infant extends MultipleItemAbstract
     }
 
     /**
-     * Get InfantID
+     * TODO: Doc
      * 
-     * @return InfantID
+     * @return Infant TODO: Doc
      */
-    public String getInfantID()
+    public Infant getInfant()
     {
-        return infantID;
+        return null;
     }
 }

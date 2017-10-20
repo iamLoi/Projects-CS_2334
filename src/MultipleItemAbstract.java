@@ -24,13 +24,13 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
     public abstract SingleItemAbstract getItem(int index);
 
     /**
-     * Get getMaxLeftWrist
+     * TODO: Doc
      * 
-     * @param dim
-     *            x y or z
-     * @return a GeneralValue
+     * @param fieldName
+     * @param subFieldName
+     * @return State TODO: Doc
      */
-    public GeneralValue getMaxLeftWrist(int dim)
+    public State getMaxState(String fieldName, String subFieldName)
     {
         GeneralValue max = new GeneralValue();
 
@@ -48,18 +48,18 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
                 }
             }
         }
-        return max;
+        return null;
 
     }
 
     /**
-     * Get getMinLeftWrist
+     * TODO: Doc
      * 
-     * @param dim
-     *            x y or z
-     * @return a GeneralValue
+     * @param fieldName
+     * @param subFieldName
+     * @return State TODO: Doc
      */
-    public GeneralValue getMinLeftWrist(int dim)
+    public State getMinState(String fieldName, String subFieldName)
     {
         GeneralValue min = new GeneralValue();
 
@@ -75,18 +75,18 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
                 }
             }
         }
-        return min;
+        return null;
 
     }
 
     /**
-     * Get averageLeftWrist
+     * TODO: Doc
      * 
-     * @param dim
-     *            x y or z
-     * @return a GeneralValue
+     * @param fieldName
+     * @param subFieldName
+     * @return GeneralValue TODO: Doc
      */
-    public GeneralValue getAverageLeftWrist(int dim)
+    public GeneralValue getAverageValue(String fieldName, String subFieldName)
     {
         int size = 0;
         double sum = 0.0;
