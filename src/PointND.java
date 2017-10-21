@@ -18,11 +18,11 @@ public class PointND
      */
     public PointND()
     {
-        // TODO Auto-generated constructor stub
+        PointND nd = new PointND();
     }
 
     /**
-     * Add to treeMap
+     * Add new data set to TreeMap
      * 
      * @param subFieldName
      *            title of value
@@ -31,12 +31,11 @@ public class PointND
      */
     public void add(String subFieldName, GeneralValue value)
     {
-        // TODO Auto-generated method stub
-
+        values.put(subFieldName, value);
     }
 
     /**
-     * Accessor value in TreeMap
+     * Access generalvalues in TreeMap
      * 
      * @param subFieldName
      *            title of value
@@ -44,14 +43,14 @@ public class PointND
      */
     public GeneralValue getValue(String subFieldName)
     {
-        return null;
+        return values.get(subFieldName);
 
     }
 
     /**
      * Access size of TreeMap
      * 
-     * @return size
+     * @return size of values
      */
     public int size()
     {
@@ -59,13 +58,15 @@ public class PointND
     }
 
     /**
-     * TODO: Doc
+     * Returns the collection of data sets in values
      * 
-     * @return
+     * @return an iterator of string of data sets in values
      */
     public Iterator<String> iterator()
     {
-        return null;
+        // TODO: VERIFY IF CORRECT!
+        return values.keySet().iterator();
+
     }
 
     /**
@@ -77,7 +78,15 @@ public class PointND
      */
     public String toString()
     {
-        // TODO Auto-generated method stub
-        return null;
+        // TODO: VERIFY IF CORRECT!
+        String output = "";
+        Iterator<String> keys = iterator();
+
+        while (keys.hasNext())
+        {
+            output += keys.next() + " = " + values.get(keys.next()) + "; \n";
+        }
+
+        return output;
     }
 }
