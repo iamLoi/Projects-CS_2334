@@ -8,30 +8,35 @@
 public abstract class SingleItemAbstract
 {
     /**
-     * Child classes must implement getMaxLeftWrist method to compute statistic
+     * Access max state
      * 
-     * @param dim
-     *            x,y,or z
-     * @return a generalValue
+     * @param fieldName
+     *            title of value
+     * @param subFieldName
+     *            value
+     * @return a state
      */
-    public abstract GeneralValue getMaxLeftWrist(int dim);
+    public abstract State getMaxState(String fieldName, String subFieldName);
 
     /**
-     * Child classes must implement getMinLeftWrist method to compute statistic
+     * Access min state
      * 
-     * @param dim
-     *            x,y,or z
-     * @return a generalValue
+     * @param fieldName
+     *            title of value
+     * @param subFieldName
+     *            value
+     * @return a state
      */
-    public abstract GeneralValue getMinLeftWrist(int dim);
+    public abstract State getMinState(String fieldName, String subFieldName);
 
     /**
-     * Child classes must implement getAverageLeftWrist method to compute
-     * statistic
+     * Access average state
      * 
-     * @param dim
-     *            x,y,or z
-     * @return a generalValue
+     * @param fieldName
+     *            title of value
+     * @param subFieldName
+     *            value
+     * @return a generalvalue
      */
-    public abstract GeneralValue getAverageLeftWrist(int dim);
+    public abstract GeneralValue getAverageValue(String fieldName, String subFieldName);
 }

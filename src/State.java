@@ -1,3 +1,5 @@
+import java.util.Iterator;
+import java.util.TreeMap;
 
 /**
  * Representation of the state of a single time step
@@ -9,22 +11,33 @@
  */
 public class State extends SingleItemAbstract
 {
-
-    /** Position of the left Wrist */
-    private Point3D leftWrist;
-    /** Position of the right Wrist */
-    private Point3D rightWrist;
-    /** Timestamp of the current sample. */
-    private double time;
+    private TreeMap<String, PointND> variables = new TreeMap<>();
+    private Trial trial;
 
     /**
-     * Splits the string into 7 parts and save corresponding elements to either
-     * left or right wrist.
-     * 
-     * @param strg
-     *            from the line of comma separated values
+     * The default constructor creates an object with no ﬁelds
      */
-    public State(String strg)
+    public State()
+    {
+
+    }
+
+    /**
+     * The main (non-default) constructor takes as input the Trial to which the
+     * State belongs, a FieldMapper that will inform the constructor about how
+     * to create ﬁelds from the data (described below) and a String that
+     * describes all of the values associated with the State (a CSV row).
+     * 
+     * @param trial
+     *            Trial to which the State belongs
+     * @param fieldMapper
+     *            will inform the constructor about how to create ﬁelds from the
+     *            data
+     * @param values
+     *            describes all of the values associated with the State (a CSV
+     *            row).
+     */
+    public State(Trial trial, FieldMapper fieldMapper, String values)
     {
         String[] parts = strg.split(",");
         time = Double.parseDouble(parts[0]);
@@ -36,86 +49,114 @@ public class State extends SingleItemAbstract
     }
 
     /**
-     * get left wrist
+     * Accessing this trial
      * 
-     * @return leftWrist leftWrist
+     * @return this trial
      */
-    public Point3D getLeftWrist()
+    public Trial getTrial()
     {
-        return leftWrist;
+        return trial;
 
     }
 
     /**
-     * get right wrist
+     * returns the PointND object corresponding to a ﬁeld name. If the ﬁeld is
+     * not a component of the State, then null is returned.
      * 
-     * @return rightWrist rightWrist
+     * @param fieldName
+     * @return returns the PointND object corresponding to a ﬁeld name. If the
+     *         ﬁeld is not a component of the State, then null is returned.
      */
-    public Point3D getRightWrist()
+    public PointND getPoint(String fieldName)
     {
-        return rightWrist;
+        return null;
 
     }
 
     /**
-     * time of state
+     * returns the GeneralValue that corresponds to the ﬁeld and subﬁeld names.
+     * If the State does not contain the ﬁeld/subﬁeld, then this method returns
+     * an invalid GeneralValue.
      * 
-     * @return time of state
+     * @param fieldName
+     *            fieldname
+     * @param subFieldName
+     *            value
+     * @return returns the GeneralValue that corresponds to the ﬁeld and subﬁeld
+     *         names. If the State does not contain the ﬁeld/subﬁeld, then this
+     *         method returns an invalid GeneralValue.
      */
-    public double getTime()
+    public GeneralValue getValue(String fieldName, String subFieldName)
     {
-        return this.time;
+        return null;
     }
 
     /**
-     * The timestamp and position of left and right wrists
+     * return the State that contains the speciﬁed maximum value.
      * 
-     * @return formatted string of state
+     * @param fieldName
+     *            key
+     * @param subFieldName
+     *            value
+     * @return return the State that contains the speciﬁed minimum/maximum
+     *         value.
+     */
+    @Override
+    public State getMaxState(String fieldName, String subFieldName)
+    {
+        return null;
+    }
+
+    /**
+     * return the State that contains the speciﬁed minimum value.
+     * 
+     * @param fieldName
+     *            key
+     * @param subFieldName
+     *            value
+     * @return return the State that contains the speciﬁed minimum/maximum
+     *         value.
+     */
+    @Override
+    public State getMinState(String fieldName, String subFieldName)
+    {
+        return null;
+    }
+
+    /**
+     * TODO: Doc
+     * 
+     * @param fieldName
+     * @param subFieldName
+     * @return
+     */
+    public GeneralValue getAverageValue(String fieldName, String subFieldName)
+    {
+        return null;
+    }
+
+    /**
+     * returns an Iterator over the ﬁeld names.
+     * 
+     * @return returns an Iterator over the ﬁeld names.
+     */
+    public Iterator<String> iterator()
+    {
+        return null;
+
+    }
+
+    /**
+     * returns a multi-line String (one line for each ﬁeld, in alphabetical
+     * order of the ﬁeld names).
+     * 
+     * @return returns a multi-line String (one line for each ﬁeld, in
+     *         alphabetical order of the ﬁeld names).
      */
     public String toString()
     {
-        return String.format("%.2f: left_wrist=<%s>, right_wrist=<%s>", time,
-                leftWrist.toString(), rightWrist.toString());
+        return null;
 
-    }
-
-    /**
-     * Essentially a getter method for specified dimension of the left wrist
-     * 
-     * @param dim
-     *            dimension of value
-     * @return a general value of the specified dimension
-     */
-    @Override
-    public GeneralValue getMaxLeftWrist(int dim)
-    {
-        return getLeftWrist().getDimValue(dim);
-    }
-
-    /**
-     * Essentially a getter method for specified dimension of the left wrist
-     * 
-     * @param dim
-     *            dimension of value
-     * @return a general value of the specified dimension
-     */
-    @Override
-    public GeneralValue getMinLeftWrist(int dim)
-    {
-        return getLeftWrist().getDimValue(dim);
-    }
-
-    /**
-     * Essentially a getter method for specified dimension of the left wrist
-     * 
-     * @param dim
-     *            dimension of value
-     * @return a general value of the specified dimension
-     */
-    @Override
-    public GeneralValue getAverageLeftWrist(int dim)
-    {
-        return getLeftWrist().getDimValue(dim);
     }
 
 }

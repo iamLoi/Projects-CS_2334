@@ -15,12 +15,12 @@ public class Trial extends MultipleItemAbstract
 {
     /** Sequence of states. */
     private ArrayList<State> stateList;
-    /** ID for the infant */
-    private String infantID;
     /** Week index. */
     private int week;
     /** File name that was loaded. */
     private String fileName;
+    /** Infant */
+    private Infant infant;
 
     /**
      * Trial constructor
@@ -29,18 +29,17 @@ public class Trial extends MultipleItemAbstract
      * corresponding file • Throws FileNotFoundException if the file does not
      * exists
      * 
+     * @param infant
+     *            working with
      * @param directory
-     *            String representing the directory containing the data files
      * @param infantID
-     *            String representing the infant ID
      * @param week
-     *            int week for the data file.
      * @throws IOException
-     *             if file not found
      */
-    public Trial(String directory, String infantID, int week) throws IOException
+    public Trial(Infant infant, String directory, String infantID, int week)
+            throws IOException
     {
-        this.infantID = infantID;
+        this.infant = infant;
         this.week = week;
         this.fileName = String.format("%s/subject_%s_w%02d.csv", directory, infantID,
                 week);
@@ -72,13 +71,13 @@ public class Trial extends MultipleItemAbstract
     }
 
     /**
-     * Access InfantID
+     * Access Infant
      * 
-     * @return infantID
+     * @return infant
      */
-    public String getInfantID()
+    public Infant getInfant()
     {
-        return infantID;
+        return infant;
     }
 
     /**
