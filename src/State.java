@@ -11,7 +11,7 @@ import java.util.TreeMap;
  */
 public class State extends SingleItemAbstract
 {
-    private TreeMap<String, PointND> variables = new TreeMap<>();
+    private TreeMap<String, PointND> variables;
     private Trial trial;
 
     /**
@@ -19,7 +19,7 @@ public class State extends SingleItemAbstract
      */
     public State()
     {
-
+        variables = new TreeMap<>();
     }
 
     /**
@@ -39,13 +39,18 @@ public class State extends SingleItemAbstract
      */
     public State(Trial trial, FieldMapper fieldMapper, String values)
     {
-        String[] parts = strg.split(",");
-        time = Double.parseDouble(parts[0]);
-        leftWrist = new Point3D(new GeneralValue(parts[1]), new GeneralValue(parts[2]),
-                new GeneralValue(parts[3]));
-        rightWrist = new Point3D(new GeneralValue(parts[4]), new GeneralValue(parts[5]),
-                new GeneralValue(parts[6]));
+        // TODO: FINISH THIS METHOD!
+        this.trial = trial;
+        String[] parts = values.split(",");
 
+        // Get the names of the column we're working with
+        Iterator<String> iterate = fieldMapper.iterator();
+
+        while (iterate.hasNext())
+        {
+            String thisKey = iterate.next(); // Name of the column
+            variables.put(thisKey, fieldMapper.extractPointND(parts, thisKey));
+        }
     }
 
     /**
@@ -69,6 +74,11 @@ public class State extends SingleItemAbstract
      */
     public PointND getPoint(String fieldName)
     {
+        // If fieldName exists, get pointnd
+        if (variables.containsKey(fieldName))
+        {
+            return variables.get(fieldName);
+        }
         return null;
 
     }
@@ -88,7 +98,11 @@ public class State extends SingleItemAbstract
      */
     public GeneralValue getValue(String fieldName, String subFieldName)
     {
-        return null;
+        if (getPoint(fieldName) != null)
+        {
+            return getPoint(fieldName).getValue(subFieldName);
+        }
+        return new GeneralValue("NaN");
     }
 
     /**
@@ -104,7 +118,7 @@ public class State extends SingleItemAbstract
     @Override
     public State getMaxState(String fieldName, String subFieldName)
     {
-        return null;
+        return this;
     }
 
     /**
@@ -124,11 +138,13 @@ public class State extends SingleItemAbstract
     }
 
     /**
-     * TODO: Doc
+     * return the average value.
      * 
      * @param fieldName
+     *            key
      * @param subFieldName
-     * @return
+     *            value
+     * @return return the average value.
      */
     public GeneralValue getAverageValue(String fieldName, String subFieldName)
     {
@@ -136,13 +152,13 @@ public class State extends SingleItemAbstract
     }
 
     /**
-     * returns an Iterator over the ﬁeld names.
+     * Returns the collection of data sets in values
      * 
-     * @return returns an Iterator over the ﬁeld names.
+     * @return an iterator of string of data sets in values
      */
     public Iterator<String> iterator()
     {
-        return null;
+        return variables.keySet().iterator();
 
     }
 
@@ -155,8 +171,17 @@ public class State extends SingleItemAbstract
      */
     public String toString()
     {
-        return null;
+        String output = "";
+        Iterator<String> keys = iterator();
 
+        while (keys.hasNext())
+        {
+            String thisKey = keys.next();
+            // Single line string
+            output += thisKey + "(" + variables.get(thisKey).toString() + ")\n";
+        }
+
+        return output;
     }
 
 }

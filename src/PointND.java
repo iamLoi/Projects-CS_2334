@@ -84,7 +84,8 @@ public class PointND
 
         while (keys.hasNext())
         {
-            output += keys.next() + " = " + values.get(keys.next()) + "; \n";
+            // Single line string
+            output += keys.next() + " = " + values.get(keys.next()) + "; ";
         }
 
         return output;
