@@ -11,14 +11,14 @@ import java.util.TreeMap;
 public class PointND
 {
     /** Stores key and values of each PointND **/
-    private TreeMap<String, GeneralValue> values = new TreeMap<>();
+    private TreeMap<String, GeneralValue> values;
 
     /**
      * Default constructor
      */
     public PointND()
     {
-        PointND nd = new PointND();
+        values = new TreeMap<>();
     }
 
     /**

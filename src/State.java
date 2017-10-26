@@ -47,6 +47,7 @@ public class State extends SingleItemAbstract
 
         while (iterate.hasNext())
         {
+
             String thisKey = iterate.next(); // Name of the column
             variables.put(thisKey, fieldMapper.extractPointND(parts, thisKey));
         }
@@ -141,7 +142,9 @@ public class State extends SingleItemAbstract
      */
     public GeneralValue getAverageValue(String fieldName, String subFieldName)
     {
-        return new GeneralValue(new Field().getIndex(subFieldName));
+        // TODO CHECK IF CORRECT!
+        return this.getPoint(fieldName).getValue(subFieldName);
+        // return new GeneralValue(new Field().getIndex(subFieldName));
     }
 
     /**

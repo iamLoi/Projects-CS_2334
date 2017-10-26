@@ -67,6 +67,7 @@ public class FieldMapper
      */
     public Field getField(String fieldName)
     {
+        System.out.println(fieldMap.get(fieldName).toString());
         return fieldMap.get(fieldName);
     }
 
@@ -88,7 +89,6 @@ public class FieldMapper
         PointND nd = new PointND();
         Field field = getField(fieldName);
         Iterator<String> iterator = field.iterator();
-
         for (int i = 0; i < stringValues.length; ++i)
         {
             if (iterator.hasNext())
