@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class FieldMapper
 {
     /** The data structure in the CSV file */
-    private TreeMap<String, Field> fieldMap = new TreeMap<>();
+    private TreeMap<String, Field> fieldMap;
 
     /**
      * The job of this constructor is to create the entire data structure
@@ -24,16 +24,35 @@ public class FieldMapper
      */
     public FieldMapper(String[] columnNames)
     {
-        for (String column : columnNames)
+
+        // TODO FIND IF CORRECT
+        fieldMap = new TreeMap<>();
+        Field subField = new Field();
+
+        for (int i = 0; i < columnNames.length; ++i)
         {
-            // If column is left_wrist_z. fieldName is left_wrist. subField is z
+            String column = columnNames[i];
+
+            // If the second to last character of the column name is “ ”
+            // (underscore), then the characters leading up to the underscore
+            // become the ﬁeld name, and the last character (after the
+            // underscore) is the subﬁeld name. A column name of “left wrist z”
+            // corresponds to a ﬁeld name of “left wrist” and a subﬁeld name of
+            // “z”.
+
             if (column.charAt(column.length() - 2) == '_')
             {
+                subField.addSubField(column.substring(column.length() - 1), i);
+
                 fieldMap.put(column.substring(0, column.length() - 2),
                         getField(column.substring(0, column.length() - 2)));
             }
             else
             {
+                // A column name of “time” corresponds to a ﬁeld name of “time”
+                // and a subﬁeld name of ““.
+                subField.addSubField("", i); // time, column index i
+
                 fieldMap.put(column, getField(column));
             }
         }

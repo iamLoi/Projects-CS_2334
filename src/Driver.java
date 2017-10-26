@@ -23,6 +23,6 @@ public class Driver
         // System.out.println(trial.getMaxLeftWrist(0));
         //
         String n = "left_wrist_z";
-        System.out.println(n.substring(0, n.length() - 2));
+        System.out.println(n.substring(n.length() - 1));
     }
 }

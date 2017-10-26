@@ -39,7 +39,6 @@ public class State extends SingleItemAbstract
      */
     public State(Trial trial, FieldMapper fieldMapper, String values)
     {
-        // TODO: FINISH THIS METHOD!
         this.trial = trial;
         String[] parts = values.split(",");
 
@@ -74,13 +73,7 @@ public class State extends SingleItemAbstract
      */
     public PointND getPoint(String fieldName)
     {
-        // If fieldName exists, get pointnd
-        if (variables.containsKey(fieldName))
-        {
-            return variables.get(fieldName);
-        }
-        return null;
-
+        return variables.get(fieldName);
     }
 
     /**
@@ -102,7 +95,7 @@ public class State extends SingleItemAbstract
         {
             return getPoint(fieldName).getValue(subFieldName);
         }
-        return new GeneralValue("NaN");
+        return new GeneralValue();
     }
 
     /**
@@ -134,7 +127,7 @@ public class State extends SingleItemAbstract
     @Override
     public State getMinState(String fieldName, String subFieldName)
     {
-        return null;
+        return this;
     }
 
     /**
@@ -148,7 +141,7 @@ public class State extends SingleItemAbstract
      */
     public GeneralValue getAverageValue(String fieldName, String subFieldName)
     {
-        return null;
+        return new GeneralValue(new Field().getIndex(subFieldName));
     }
 
     /**
@@ -180,7 +173,6 @@ public class State extends SingleItemAbstract
             // Single line string
             output += thisKey + "(" + variables.get(thisKey).toString() + ")\n";
         }
-
         return output;
     }
 

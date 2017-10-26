@@ -13,17 +13,17 @@ import java.util.TreeMap;
 
 public class Field
 {
-    /** TODO: Doc */
+    /** Stores the subFields and values associated with it */
     private TreeMap<String, Integer> subFields;
 
-    /** TODO: Doc */
+    /** Default constructor */
     public Field()
     {
         subFields = new TreeMap<>();
     }
 
     /**
-     * TODO: Doc
+     * Add subfield
      * 
      * @param subFieldName
      * @param columnIndex
@@ -60,7 +60,7 @@ public class Field
     /**
      * iterator() returns a String iterator over all of the subﬁeld names.
      * 
-     * @return Iterator<String>
+     * @return an Iterator
      */
     public Iterator<String> iterator()
     {

@@ -24,67 +24,77 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
     public abstract SingleItemAbstract getItem(int index);
 
     /**
-     * TODO: Doc
+     * get max State
      * 
      * @param fieldName
+     *            name of column
      * @param subFieldName
-     * @return State TODO: Doc
+     *            x y or z
+     * @return State a state
      */
     public State getMaxState(String fieldName, String subFieldName)
     {
-        GeneralValue max = new GeneralValue();
-
-        // Loops through each value and check if larger than max declared above.
-        // If so replace max.
-        for (int i = 0; i < getSize(); ++i)
-        {
-            // Check if value is valid first.
-            if (getItem(i).getMaxLeftWrist(dim).isValid())
-            {
-                if (getItem(i).getMaxLeftWrist(dim).isGreaterThan(max))
-                {
-                    // Loops through each value. If larger, replace max.
-                    max = getItem(i).getMaxLeftWrist(dim);
-                }
-            }
-        }
-        return null;
-
-    }
-
-    /**
-     * TODO: Doc
-     * 
-     * @param fieldName
-     * @param subFieldName
-     * @return State TODO: Doc
-     */
-    public State getMinState(String fieldName, String subFieldName)
-    {
         GeneralValue min = new GeneralValue();
+        State state = new State();
 
         // Loops through each value. If smaller, replace min.
         for (int i = 0; i < getSize(); ++i)
         {
-            // Check if value is valid first.
-            if (getItem(i).getMaxLeftWrist(dim).isValid())
+            GeneralValue value = getItem(i).getMaxState(fieldName, subFieldName)
+                    .getValue(fieldName, subFieldName);
+
+            if (value.isGreaterThan(min))
             {
-                if (getItem(i).getMinLeftWrist(dim).isLessThan(min))
-                {
-                    min = getItem(i).getMinLeftWrist(dim);
-                }
+                // Loops through each value. If larger, replace max.
+                min = value;
+                state = getItem(i).getMaxState(fieldName, subFieldName);
             }
+
         }
-        return null;
+        return state;
 
     }
 
     /**
-     * TODO: Doc
+     * get min State
      * 
      * @param fieldName
+     *            name of column
      * @param subFieldName
-     * @return GeneralValue TODO: Doc
+     *            x y or z
+     * @return State a state
+     */
+    public State getMinState(String fieldName, String subFieldName)
+    {
+        GeneralValue min = new GeneralValue();
+        State state = new State();
+
+        // Loops through each value. If smaller, replace min.
+        for (int i = 0; i < getSize(); ++i)
+        {
+            GeneralValue value = getItem(i).getMinState(fieldName, subFieldName)
+                    .getValue(fieldName, subFieldName);
+
+            if (value.isLessThan(min))
+            {
+                // Loops through each value. If larger, replace max.
+                min = value;
+                state = getItem(i).getMinState(fieldName, subFieldName);
+            }
+
+        }
+        return state;
+
+    }
+
+    /**
+     * Average value
+     * 
+     * @param fieldName
+     *            column name
+     * @param subFieldName
+     *            x y z
+     * @return GeneralValue associated with it
      */
     public GeneralValue getAverageValue(String fieldName, String subFieldName)
     {
@@ -95,9 +105,10 @@ public abstract class MultipleItemAbstract extends SingleItemAbstract
 
         for (int i = 0; i < getSize(); ++i)
         {
-            if (getItem(i).getMaxLeftWrist(dim).isValid())
+            GeneralValue value = getItem(i).getAverageValue(fieldName, subFieldName);
+            if (value.isValid())
             {
-                sum += getItem(i).getAverageLeftWrist(dim).getDoubleValue();
+                sum += value.getDoubleValue();
                 size++;
             }
         }

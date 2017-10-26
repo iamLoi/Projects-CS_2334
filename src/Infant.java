@@ -46,8 +46,8 @@ public class Infant extends MultipleItemAbstract
         {
             try
             {
-                Trial trial = new Trial(directory, infantID, week);
-                this.trialList.add(trial);
+                Trial trial = new Trial(this, directory, infantID, week);
+                trialList.add(trial);
             }
             catch (FileNotFoundException e)
             {
@@ -80,12 +80,12 @@ public class Infant extends MultipleItemAbstract
     }
 
     /**
-     * TODO: Doc
+     * get infant
      * 
-     * @return Infant TODO: Doc
+     * @return Infant
      */
     public Infant getInfant()
     {
-        return null;
+        return this;
     }
 }

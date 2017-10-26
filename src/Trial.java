@@ -48,12 +48,13 @@ public class Trial extends MultipleItemAbstract
         BufferedReader br = new BufferedReader(new FileReader(this.fileName));
         String strg;
 
-        strg = br.readLine();
+        // Column name (the fieldnames) is the first line read in
+        String[] names = br.readLine().split(",");
         strg = br.readLine();
 
         while (strg != null)
         {
-            stateList.add(new State(strg));
+            stateList.add(new State(this, new FieldMapper(names), strg));
             strg = br.readLine();
         }
         br.close();

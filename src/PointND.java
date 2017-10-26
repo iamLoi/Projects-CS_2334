@@ -35,7 +35,9 @@ public class PointND
     }
 
     /**
-     * Access generalvalues in TreeMap
+     * getValue(String subFieldName) will return the GeneralValue that
+     * corresponds to the subfield. If subFieldName does not exist in the map,
+     * then this method must return an invalid GeneralValue.
      * 
      * @param subFieldName
      *            title of value
@@ -43,7 +45,11 @@ public class PointND
      */
     public GeneralValue getValue(String subFieldName)
     {
-        return values.get(subFieldName);
+        if (values.containsKey(subFieldName))
+        {
+            return values.get(subFieldName);
+        }
+        return new GeneralValue();
 
     }
 
@@ -78,14 +84,14 @@ public class PointND
      */
     public String toString()
     {
-        // TODO: VERIFY IF CORRECT!
         String output = "";
         Iterator<String> keys = iterator();
 
         while (keys.hasNext())
         {
+            String thisKey = keys.next();
             // Single line string
-            output += keys.next() + " = " + values.get(keys.next()) + "; ";
+            output += thisKey + " = " + values.get(thisKey) + "; ";
         }
 
         return output;
